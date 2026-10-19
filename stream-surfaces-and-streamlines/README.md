@@ -4,7 +4,7 @@ Given a 3D steady velocity field and a seed point, this project finds the two st
 
 It is built in three parts. Each part solves the same problem differently, and each one ends at a limitation that the next part is designed to address.
 
-Parts 1 and 2 were completed on 13 and 14 October 2026, respectively, and published to GitHub on 18 October 2026.
+Parts 1 and 2 were completed on 13 and 14 October 2026, respectively, and published to GitHub on 18 and 19 October 2026.
 
 ## The problem
 
