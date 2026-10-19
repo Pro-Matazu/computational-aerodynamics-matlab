@@ -55,7 +55,7 @@ Using the same flow in all three parts means the three methods can be compared o
 | Part | Approach | Status |
 | --- | --- | --- |
 | [1](part1-manual-integration/) | Manual integration: derive the surfaces on paper, then plot them in MATLAB | Done (13 Oct 2026) |
-| [2](part2-symbolic-integration/) | Symbolic integration: MATLAB finds the surfaces from u,v,w | Done (14 Oct 2026) |
+| [2](part2-symbolic-math-method/) | Symbolic integration: MATLAB finds the surfaces from u,v,w | Done (14 Oct 2026) |
 | 3 | Numerical integration: `ode45` traces the streamline directly | In progress |
 
 ### Part 1: Manual integration
@@ -75,6 +75,7 @@ The Symbolic Math Toolbox does the integration (```int```), finds the constants 
 - **Gradient test:** `V · ∇f = 0` everywhere shows that each `f` really is a stream surface. Both tests return exactly 0 because the symbolic algebra cancels exactly.
 - **Residual test**: The hand-derived streamline is substituted into both surface equations. The largest residual is about 2.2e-16, which is the machine precision (`eps`), so the curve lies on both surfaces to rounding error.
 
+![Part 2 result](part2-symbolic-math-method/stream_surfaces_using_symbolic_math_method.png)
 
 #### Limitation
 The method only works when each integral involves a single variable, so most real velocity fields break it. The streamline is still parametrised by hand. Dividing `u`, `v`, or `w` also fails wherever they are zero.
