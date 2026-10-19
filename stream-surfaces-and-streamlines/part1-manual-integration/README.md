@@ -1,6 +1,6 @@
 # Part 1: Manual Integration
 
-In this part, I find the stream surfaces and the streamline for one velocity field by integrating on paper, then use MATLAB only to plot the results. It is the baseline for the other two parts: the same flow is solved symbolically in Part 2 and numerically in Part 3.
+In this part, I find the stream surfaces and the streamline for one velocity field by integrating on paper, then use MATLAB only to plot the results. It is the baseline for the other two parts: the same flow is solved symbolically in [Part 2](../part2-symbolic-math-method/) and numerically in Part 3.
 
 Completed: 13 October 2026
 
@@ -12,7 +12,7 @@ u = x, v = -y, w = 1          seed point: (1, 1, 0)
 
 ## Derivation by hand
 
-A streamline is tangent to the velocity at every point. This implies that V x ds = 0 (the cross product of two parallel vectors is zero), where 
+A streamline is tangent to the velocity at every point. This implies that `V x ds = 0` (the cross product of two parallel vectors is zero), where 
 
 ```
 V = iu + jv + kw,   
@@ -62,7 +62,7 @@ We parametrised the curve using the equations of the stream surfaces, meaning th
 3. **Streamline:** ```plot3(exp(t), exp(-t), t)``` draws the parametrised curve in red on top of both surfaces.
 4. **Presentation:** Both surfaces are semi-transparent in different colours so that the curve where they meet is visible, and the figure is saved as a PNG.
 
-![Part 1 result](stream_surfaces_part1.PNG)
+![Part 1 result](stream_surfaces_part1.png)
 
 
 The red curve runs along the intersection of the green sheet (`z = ln x`) and the blue wall (`xy = 1`), and passes through the seed point (1, 1, 0).
@@ -84,4 +84,4 @@ Everything that matters in this part was done by me on paper: the integration, t
 - ```surf``` needs each surface rearranged so that one variable is a formula in terms of the other two. That worked here (```y = 1/x``` and ```z = ln x```), but it is not always possible. A sphere, for example, gives two heights for each point, so one formula cannot draw it.
 - The plot shows that the red curve lies on both surfaces, but nothing in the script checks it. Part 2 adds a numerical check.
 
-[Part 2](../part2_stream_surfaces_using) removes the hand integration by letting MATLAB's Symbolic Math Toolbox do it, and plots the surfaces implicitly so they no longer need rearranging.
+[Part 2](../part2-symbolic-math-method/) removes the hand integration by letting MATLAB's Symbolic Math Toolbox do it, and plots the surfaces implicitly so they no longer need rearranging.
