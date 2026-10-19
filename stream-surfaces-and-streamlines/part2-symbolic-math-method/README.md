@@ -1,6 +1,6 @@
 # Part 2: Symbolic Integration
 
-In [Part 1](../part1_manual_integration/), I did the integration by hand and used MATLAB to plot the results. In this part, MATLAB's Symbolic Math Toolbox does the integration, finds the constants from the seed point, and plots the stream surfaces directly from their equations. Two checks confirm that the surfaces are correct.
+In [Part 1](../part1-manual-integration/), I did the integration by hand and used MATLAB to plot the results. In this part, MATLAB's Symbolic Math Toolbox does the integration, finds the constants from the seed point, and plots the stream surfaces directly from their equations. Two checks confirm that the surfaces are correct.
 
 Completed: 14 October 2026.
 
