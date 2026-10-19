@@ -30,14 +30,14 @@ f2 = int(1/w, z) - int(1/u, x);    %z - ln x
 c1 = subs(f1, [x y z], seed);       %0
 c2 = subs(f2, [x y z], seed);       %0
 ```
-The two stream surfaces are `f1 = c1` and `f2 = c2`. These are the same surfaces as in part 1: `ln x + ln y = 0` is `xy = 1`, and `z - ln x` is `z = ln x`. The constant for the first surface is 0 here, and 1 in Part 1, because the surface is written in log form here and in product form there.
+The two stream surfaces are `f1 = c1` and `f2 = c2`. These are the same surfaces as in Part 1: `ln x + ln y = 0` is `xy = 1`, and `z - ln x` is `z = ln x`. The constant for the first surface is 0 here, and 1 in Part 1, because the surface is written in log form here and in product form there.
 
 4. **Check the surfaces(gradient test):** See below. 
  
 5. **Plot:** The surfaces are drawn with `fimplicit3`, and the streamline overlaid.
 6. **Check the streamline(residual test):** See below
    
-![Stream surfaces and streamlines, symbolic method](stream_surfaces_using_symbolic_method.png/)
+![Stream surfaces and streamlines, symbolic method](stream_surfaces_using_symbolic_math_method.png/)
 
 ## Plotting implicit surfaces
 
@@ -50,7 +50,7 @@ stream_surface2 = matlabFunction(f2 - c2, 'vars', [x y z]);
 ```
 
 **Choosing the domain box** `[0.2 3  0.2 5.2  -2 2]`:
-- `x` must be positive (greater than zero) because of `log`, it starts at 0.2.
+- `x` must be positive (greater than zero) because of `log`; it starts at 0.2.
 - The wall `xy = 1` reaches `y = 5` at `x = 0.2`, so y goes up to 5.2 to avoid clipping it.
 - The sheet `z = ln x` reaches `z = -1.61` at `x = 0.2`, so z starts below that, at -2.
 
@@ -71,7 +71,7 @@ dot1 = dot(grad1, V);             % 0
 dot2 = dot(grad2, v);             % 0
 ```
 
-Both return exactly 0 as symbolic expressions, so the test holds at every point and not at seed point.
+Both return exactly 0 as symbolic expressions, so the test holds at every point and not only at the seed point.
 
 `syms x y z real` is needed here because `dot` conjugates its first argument. For complex symbols, the result stays as `conj(x)/x - conj(y)/y`, which MATLAB cannot simplify to 0. Declaring the variables real removes the conjugates.
 
