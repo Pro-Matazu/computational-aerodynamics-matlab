@@ -1,6 +1,6 @@
 # Part 1: Manual Integration
 
-In this part, I find the stream surfaces and the streamline for one velocity field by integrating on paper, then use MATLAB only to plot the results. It is the baseline for the other two parts: the same flow is solved symbolically in [Part 2](../part2-symbolic-math-method/) and numerically in Part 3.
+In this part, I find the stream surfaces and the streamline for one velocity field by integrating on paper, then use MATLAB only to plot the results. It is the baseline for the other two parts: the same flow is solved symbolically in [Part 2](../part2-symbolic-math-method/) and numerically in [Part 3](../part3-numerical-integration/).
 
 Completed: 13 October 2026
 
