@@ -4,7 +4,7 @@ Given a 3D steady velocity field and a seed point, this project finds the two st
 
 It is built in three parts. Each part solves the same problem differently, and each one ends at a limitation that the next part is designed to address.
 
-Parts 1 and 2 were completed on 13 and 14 October 2026, respectively, and published to GitHub on 18 and 19 October 2026.
+Parts 1 and 2 were completed on 13 and 14 October 2026, respectively, and published to GitHub on 18 and 19 October 2026, and Part 3 was completed on 23 October 2026, and published to GitHub on 24 October 2026.
 
 ## The problem
 
@@ -56,7 +56,7 @@ Using the same flow in all three parts means the three methods can be compared o
 | --- | --- | --- |
 | [1](part1-manual-integration/) | Manual integration: derive the surfaces on paper, then plot them in MATLAB | Done (13 Oct 2026) |
 | [2](part2-symbolic-math-method/) | Symbolic integration: MATLAB finds the surfaces from u,v,w | Done (14 Oct 2026) |
-| 3 | Numerical integration: `ode45` traces the streamline directly | In progress |
+| [3](part3-numerical-integration/) | Numerical integration: `ode45` traces the streamline directly | In progress |
 
 ### Part 1: Manual integration
 
@@ -88,6 +88,8 @@ dx/dr = u, dy/dr = v, dz/dr = w
 ```
 
 which has no division, so zero velocity components are no longer a problem. `ode45` integrates this system from the seed point and builds the streamline step by step for any velocity field. The plan is to overlay the numerical curve on the Part 2 surfaces and compare it with the hand-derived streamline.
+
+![Part 3 result](part2-numerical-integration/streamline_using_ode45_flow1.png)
 
 ## Running the scripts
 - Requires MATLAB (written in R2021a). Part 2 also requires the Symbolic Math Toolbox.
