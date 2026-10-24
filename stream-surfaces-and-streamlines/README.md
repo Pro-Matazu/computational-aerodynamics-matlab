@@ -89,7 +89,7 @@ dx/dr = u, dy/dr = v, dz/dr = w
 
 which has no division, so zero velocity components are no longer a problem. `ode45` integrates this system from the seed point and builds the streamline step by step for any velocity field. The plan is to overlay the numerical curve on the Part 2 surfaces and compare it with the hand-derived streamline.
 
-![Part 3 result](part2-numerical-integration/streamline_using_ode45_flow1.png)
+![Part 3 result](part3-numerical-integration/streamline_using_ode45_flow1.png)
 
 ## Running the scripts
 - Requires MATLAB (written in R2021a). Part 2 also requires the Symbolic Math Toolbox.
