@@ -1,6 +1,6 @@
 # Part 3: Numerical Integration
 
-[Part 1](../part1-manual-integration/) needed me to integrate by hand, and [Part 2](../part2-symbolic-integration/) needed the integrals to separate into one-variable pieces and could not divide by a zero velocity component. In this part, MATLAB's `ode45` traces the streamline directly from the velocity field and a seed point. There are no integrals to solve and no division.
+[Part 1](../part1-manual-integration/) needed me to integrate by hand, and [Part 2](../part2-symbolic-math-method/) needed the integrals to separate into one-variable pieces and could not divide by a zero velocity component. In this part, MATLAB's `ode45` traces the streamline directly from the velocity field and a seed point. There are no integrals to solve and no division.
 
 Completed: 23 October 2026.
 
