@@ -14,7 +14,7 @@ Given a 3D velocity field and a seed point, find the stream surfaces through tha
 |---|---|---|
 | [1](stream-surfaces-and-streamlines/part1-manual-integration/) | Manual integration: derive the surfaces on paper, then plot them in MATLAB | Done (13 Oct 2026) |
 | [2](stream-surfaces-and-streamlines/part2-symbolic-math-method/) | Symbolic integration: MATLAB finds the surfaces from u, v, w, then plots them | Done (14 Oct 2026) |
-| 3 | Numerical integration: ode45 traces the streamline directly | In progress |
+| [3](stream-surfaces-and-streamlines/part3-numerical-integration/) | Numerical integration: ode45 traces the streamline directly | Done (23 Oct 2026) |
 
 ## Tools
 
