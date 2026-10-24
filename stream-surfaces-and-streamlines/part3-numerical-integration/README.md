@@ -1,6 +1,6 @@
 # Part 3: Numerical Integration
 
-Part 1 needed me to integrate by hand, and Part 2 needed the integrals to separate into one-variable pieces and could not divide by a zero velocity component. In this part, MATLAB's `ode45` traces the streamline directly from the velocity field and a seed point. There are no integrals to solve and no division.
+[Part 1](../part1-manual-integration/) needed me to integrate by hand, and [Part 2](../part2-symbolic-integration/) needed the integrals to separate into one-variable pieces and could not divide by a zero velocity component. In this part, MATLAB's `ode45` traces the streamline directly from the velocity field and a seed point. There are no integrals to solve and no division.
 
 Completed: 23 October 2026.
 
@@ -17,7 +17,7 @@ dp/dτ = V(p)
 ```
 - **No division.** If a velocity component is zero, its equation says that coordinate is not changing, which is true. It does not blow up.
 - **An initial value problem.** Given the starting position (the seed point) and the velocity field `V`, finding `p(τ)` is exactly what `ode45` solves.
-- **What τ is.** A bookkeeping parameter. In a steady flow, it can be read as time, and the curve is the path of a fluid particle released at the seed, which coincides with the streamline. For an unsteady flow, the two differ, and a streamline needs time frozen at one instant. The script handles steady flows only.
+- **What τ is.** A bookkeeping parameter. In a steady flow, it can be read as time, and the curve is the path of a fluid particle released at the seed, which coincides with the streamline. For an unsteady flow, the two differ, and a streamline needs time frozen at one instant. This script handles steady flows only.
 
 ## How the script uses `ode45`
 `streamline_using_ode45.m` needs three things for each flow:
@@ -26,57 +26,52 @@ seed = [1; 1; 0];                   %starting position, as a column
 rhs1 = @(t, p) [p(1), -p(2); 1];    %velocity at position p, as a column
 [T1, P1] = ode45(rhs1, [0 1], seed) %integrate from t = 0 to t = 1
 ```
-- `ode45` always calls `rhs` with the parameter first and the position second, so the function takes both inputs even though a steady flow does not use `t`.
+- `ode45` always calls `rhs1` with the parameter first and the position second, so the function takes both inputs even though a steady flow does not use `t`.
 - The function must return a **column**, and the starting position must be a column.
-- `P` has one row per step. Its columns are x,y, and z, so the curve is `plot3(P(:,1), P(:,2), P(:,3))`.
-- `ode45` chooses its own step sizes, so `T` is not evenly spaced.
+- `P1` has one row per step. Its columns are x,y, and z, so the curve is `plot3(P1(:,1), P1(:,2), P1(:,3))`.
+- `ode45` chooses its own step sizes, so `T1` is not evenly spaced.
 - A streamline runs both ways from the seed, so a second run with `[0 -1]` gives the backward half, and the two are joined with `flipud`.
 
 ## Test flow 1: checked against an exact answer
 
-```math
-u = x, v = -y, w = 1      seed point: (1, 1, 0)
+```
+u = x,    v = -y,    w = 1                         seed point: (1, 1, 0)
 ```
 This is the test flow from Parts 1 and 2, which has the exact solution `x = e^t, y = e^(-t), z = t`. At `t = 1` the exact position is (e, 1/e, 1), and `ode45` returned
 
-``` math
-2.718281834233623   0.367879442271613   1.000000000000000
+```
+2.718281834233623     0.367879442271613     1.000000000000000
 ```
 
 The errors are about 5.8e-9 in x, 1.1e-9 in y, and about 1e-16 in z. The z error is machine precision, because `dz/dt = 1` does not depend on position, so the solver adds it up exactly.
 
-
+![Flow 1 streamline](streamline_using_ode45_flow1.png)
 
 ### Overlay on the Part 2 surfaces
 
-The two stream surfaces from Part 2 (xy = 1 and z = ln x) are drawn with `fimplicit3`, using function handles so that all three variables are inputs. The numerical streamline, run forward and backward from the seed, is drawn on top. It lies along the intersection of the two surfaces.
+The two stream surfaces from Part 2 (`xy = 1` and `z = ln x`) are drawn with `fimplicit3`, using function handles so that all three variables are inputs. The numerical streamline, run forward and backward from the seed, is drawn on top. It lies along the intersection of the two surfaces.
 
-
+![Overlay of the ode45 streamline on the Part 2 surfaces](overlay_part2_part3.png)
 
 The residual test from Part 2 (substituting the curve into both stream surface equations) comes out at about 5.115e-9 and 6.358e-9 on the forward and backward curves joined together, the same size as the solver's error. That is much larger than the 2.2e-16 from the hand-derived curve in Part 2, because that curve was exact and this one is numerical.
 
 ## Test flow 2: a flow Part 2 cannot solve
 
-```math
+```
 u = -y,   v = x,   w = 0        seed point: (1, 0, 0)
 ```
 
 Part 2 integrates `dz/w` which divides by zero here. The parametric form just gives `dz/dτ = 0`, so z stays at 0.
 
 By hand, `dx/(-y) = dy/x` gives 
-```math
-x^2 + y^2 = c
-```
-, and the seed fixes `c = 1`. The streamline is the unit circle at z = 0, traversed counterclockwise, and `x = cos t, y = sin t` completes one loop at `t = 2π`.
+`x² + y² = c` and the seed fixes `c = 1`. The streamline is the unit circle at z = 0, traversed counterclockwise, and `x = cos t, y = sin t` completes one loop at `t = 2π`.
 
-
+![Flow 2 streamline](streamline_using_ode45_flow2.png)
 
 The figure uses `view(2)`, a top-down view, and `axis equal`. Without equal axes, MATLAB stretches one axis and the circle looks like an ellipse.
 
 After one full lap (`tspan = [0 2*pi]`), the solution is close to the start but not on it: the radius is 0.99991, about 9e-5 short of 1, and the point has moved slightly past its starting angle. The radius error means the numerical curve has drifted very slightly off the surface 
-```math
-x^2 + y^2 = 1.
-```
+`x² + y² = 1.`
 
 ## Running it
 
@@ -85,12 +80,14 @@ x^2 + y^2 = 1.
 
 ## Files
 
+```
 part3-numerical-integration/
 ├── README.md
 ├── streamline_using_ode45.m
 ├── streamline_using_ode45_flow1.png
 ├── streamline_using_ode45_flow2.png
 └── overlay_part2_part3.png
+```
 
 ## Limitation
 
